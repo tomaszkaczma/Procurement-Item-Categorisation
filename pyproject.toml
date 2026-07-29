@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "item-categorisation"
+version = "0.1.0"
+description = "Human-in-the-loop procurement item categorisation with TF-IDF and LinearSVC."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Tomasz Kaczmarski"}
+]
+dependencies = [
+    "joblib>=1.3,<2.0",
+    "numpy>=1.26,<3.0",
+    "pandas>=2.0,<3.0",
+    "scikit-learn>=1.4,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyterlab>=4.0,<5.0",
+    "pytest>=8.0,<9.0",
+]
+
+[project.scripts]
+item-cat-generate = "item_categorisation.synthetic:main"
+item-cat-train = "item_categorisation.training:main"
+item-cat-predict = "item_categorisation.prediction:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
